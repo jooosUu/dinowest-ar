@@ -9,6 +9,8 @@
   let cat = [];
   let visible = null;
   let ocultarT = null;
+  let activo = null;   // la entidad "giro" del dino que se ve ahora: es la que se agarra con los dedos
+  const giros = new Map();
 
   const esperarEscena = () => new Promise((r) => (escena.hasLoaded ? r() : escena.addEventListener('loaded', r, { once: true })));
   const sistema = () => escena.systems['mindar-image-system'];
@@ -25,7 +27,7 @@
     m.setAttribute('scale', '0.001 0.001 0.001');
     giro.appendChild(m);
     pie.appendChild(giro);
-    return { pie, m };
+    return { pie, m, giro };
   }
 
   function salir(m, d) {
@@ -40,6 +42,7 @@
   function mostrar(d) {
     clearTimeout(ocultarT);
     visible = d;
+    activo = giros.get(d.id) || null;
     $('pista').hidden = true;
     $('encontrado').hidden = false;
     $('nombre').textContent = d.nombre;
@@ -70,7 +73,8 @@
     p.setAttribute('height', 0.78);
     p.setAttribute('material', `shader: flat; src: url(/_fuentes/ar/targets/completo/${String(i).padStart(2, '0')}_${d.id}.png)`);
     a.appendChild(p);
-    const { pie, m } = dino();
+    const { pie, m, giro } = dino();
+    giros.set(d.id, giro);
     a.appendChild(pie);
     escena.appendChild(a);
     salir(m, d);
@@ -83,7 +87,8 @@
     cat.forEach((d, i) => {
       const a = document.createElement('a-entity');
       a.setAttribute('mindar-image-target', `targetIndex: ${i}`);
-      const { pie, m } = dino();
+      const { pie, m, giro } = dino();
+      giros.set(d.id, giro);
       a.appendChild(pie);
       a.addEventListener('targetFound', () => salir(m, d));
       a.addEventListener('targetLost', () => ocultar(d));
@@ -128,4 +133,71 @@
     $('pista').hidden = false;
     sistema().start();
   });
+
+  // ---- Agarrar el dino con los dedos ----
+  // 1 dedo: girarlo (horizontal = darle la vuelta, vertical = voltearlo)
+  // 2 dedos: pellizcar = agrandar/achicar, arrastrar = moverlo sobre el sticker
+  // doble toque: volver a como salió
+  const dedos = new Map();
+  let antes = null;          // estado de los dedos en el evento anterior
+  let ultimoToque = 0;
+  const estado = new WeakMap(); // por dino: { yaw, pitch, s, x, y }
+  const inicial = () => ({ yaw: -35 * Math.PI / 180, pitch: 0, s: 1, x: 0, y: 0 });
+
+  function aplicar(g) {
+    const e = estado.get(g);
+    const o = g.object3D;
+    o.rotation.order = 'YXZ';
+    o.rotation.set(e.pitch, e.yaw, 0);
+    o.scale.setScalar(e.s);
+    o.position.set(e.x, 0, e.y);   // el plano del sticker es XZ dentro de "pie"
+  }
+
+  function resumen() {
+    const p = [...dedos.values()];
+    if (p.length === 1) return { n: 1, x: p[0].x, y: p[0].y };
+    const [a, b] = p;
+    return { n: 2, x: (a.x + b.x) / 2, y: (a.y + b.y) / 2, d: Math.hypot(a.x - b.x, a.y - b.y) };
+  }
+
+  const ignorar = (t) => t.closest && t.closest('button, #visor, #inicio');
+
+  document.addEventListener('pointerdown', (ev) => {
+    if (ignorar(ev.target) || !activo) return;
+    dedos.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
+    antes = resumen();
+    if (dedos.size === 1) {
+      const ahora = performance.now();
+      if (ahora - ultimoToque < 300) {   // doble toque
+        estado.set(activo, inicial());
+        aplicar(activo);
+      }
+      ultimoToque = ahora;
+    }
+  });
+
+  document.addEventListener('pointermove', (ev) => {
+    if (!dedos.has(ev.pointerId) || !activo) return;
+    dedos.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
+    const r = resumen();
+    if (!antes || antes.n !== r.n) { antes = r; return; }
+    if (!estado.has(activo)) estado.set(activo, inicial());
+    const e = estado.get(activo);
+    const k = 1 / Math.min(innerWidth, innerHeight);
+    if (r.n === 1) {
+      e.yaw += (r.x - antes.x) * k * 2 * Math.PI;
+      e.pitch += (r.y - antes.y) * k * 2 * Math.PI;
+    } else {
+      if (antes.d > 0) e.s = Math.min(3, Math.max(0.35, e.s * r.d / antes.d));
+      e.x += (r.x - antes.x) * k * 1.2;
+      e.y += (r.y - antes.y) * k * 1.2;
+    }
+    aplicar(activo);
+    antes = r;
+    ev.preventDefault();
+  }, { passive: false });
+
+  const soltar = (ev) => { dedos.delete(ev.pointerId); antes = dedos.size ? resumen() : null; };
+  document.addEventListener('pointerup', soltar);
+  document.addEventListener('pointercancel', soltar);
 })();
