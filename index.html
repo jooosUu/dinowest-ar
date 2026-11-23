@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DINO WEST · Realidad aumentada</title>
+<meta name="theme-color" content="#15110E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ar.css">
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+</head>
+<body>
+
+<section id="inicio" class="capa">
+  <img class="logo" src="media/logo_dw_hueso.webp" alt="DINO WEST">
+  <p class="sobre">Realidad aumentada</p>
+  <h1>Apunta a un sticker<br>y el dino sale</h1>
+  <button id="empezar" class="mancha">Empezar</button>
+  <p class="nota" id="nota">Te va a pedir permiso para usar la cámara</p>
+</section>
+
+<section id="hud" hidden>
+  <p id="pista">Apunta la cámara a un sticker de dino</p>
+  <div id="encontrado" hidden>
+    <h2 id="nombre" class="mancha"></h2>
+    <button id="mesa">Ver en tu mesa</button>
+  </div>
+</section>
+
+<section id="visor" hidden>
+  <model-viewer id="mv" ar ar-modes="webxr scene-viewer quick-look" ar-scale="auto" camera-controls
+    auto-rotate shadow-intensity="1" exposure="1.05" touch-action="pan-y" alt="Dinosaurio en 3D">
+    <button slot="ar-button" id="mv-ar" class="mancha">Ponerlo en la mesa</button>
+  </model-viewer>
+  <h2 id="mv-nombre"></h2>
+  <button id="cerrar" aria-label="Volver a la cámara">Volver a la cámara</button>
+</section>
+
+<a-scene id="escena"
+  mindar-image="imageTargetSrc: dinos.mind; autoStart: false; uiLoading: no; uiScanning: no; uiError: no; maxTrack: 1; filterMinCF: 0.0001; filterBeta: 0.001"
+  color-space="sRGB" renderer="colorManagement: true; antialias: true"
+  vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" loading-screen="enabled: false">
+  <a-camera position="0 0 0" look-controls="enabled: false" wasd-controls="enabled: false"></a-camera>
+  <a-entity light="type: ambient; intensity: 0.9"></a-entity>
+  <a-entity light="type: directional; intensity: 1.2" position="0.6 1 1.4"></a-entity>
+</a-scene>
+
+<script src="ar.js"></script>
+</body>
+</html>

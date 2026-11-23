@@ -1,0 +1,182 @@
+[
+ {
+  "id": "Alosaurio",
+  "nombre": "ALOSAURIO",
+  "glb": "modelos/Alosaurio.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Austroraptor",
+  "nombre": "AUSTRORAPTOR",
+  "glb": "modelos/Austroraptor.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Avaceratops",
+  "nombre": "AVACERATOPS",
+  "glb": "modelos/Avaceratops.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Barionix",
+  "nombre": "BARIONIX",
+  "glb": "modelos/Barionix.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Beipiaosaurio",
+  "nombre": "BEIPIAOSAURIO",
+  "glb": "modelos/Beipiaosaurio.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Camarasaurio",
+  "nombre": "CAMARASAURIO",
+  "glb": "modelos/Camarasaurio.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Carnotauro",
+  "nombre": "CARNOTAURO",
+  "glb": "modelos/Carnotauro.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Ceratosaurio",
+  "nombre": "CERATOSAURIO",
+  "glb": "modelos/Ceratosaurio.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Compsognathus",
+  "nombre": "COMPSOGNATHUS",
+  "glb": "modelos/Compsognathus.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Deinosuchus",
+  "nombre": "DEINOSUCHUS",
+  "glb": "modelos/Deinosuchus.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Diabloceratops",
+  "nombre": "DIABLOCERATOPS",
+  "glb": "modelos/Diabloceratops.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Dilofosaurio",
+  "nombre": "DILOFOSAURIO",
+  "glb": "modelos/Dilofosaurio.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Dryosaurio",
+  "nombre": "DRYOSAURIO",
+  "glb": "modelos/Dryosaurio.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Estegosaurio",
+  "nombre": "ESTEGOSAURIO",
+  "glb": "modelos/Estegosaurio.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Gallimimus",
+  "nombre": "GALLIMIMUS",
+  "glb": "modelos/Gallimimus.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Herrerasaurio",
+  "nombre": "HERRERASAURIO",
+  "glb": "modelos/Herrerasaurio.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Hypsilophodon",
+  "nombre": "HYPSILOPHODON",
+  "glb": "modelos/Hypsilophodon.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Kentrosaurio",
+  "nombre": "KENTROSAURIO",
+  "glb": "modelos/Kentrosaurio.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Maiasaura",
+  "nombre": "MAIASAURA",
+  "glb": "modelos/Maiasaura.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Oviraptor",
+  "nombre": "OVIRAPTOR",
+  "glb": "modelos/Oviraptor.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Paquicefalosaurio",
+  "nombre": "PAQUICEFALOSAURIO",
+  "glb": "modelos/Paquicefalosaurio.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Psittacosaurio",
+  "nombre": "PSITTACOSAURIO",
+  "glb": "modelos/Psittacosaurio.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Pteranodon",
+  "nombre": "PTERANODON",
+  "glb": "modelos/Pteranodon.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Pterodactilo",
+  "nombre": "PTERODÁCTILO",
+  "glb": "modelos/Pterodactilo.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Quetzalcoatlus",
+  "nombre": "QUETZALCOATLUS",
+  "glb": "modelos/Quetzalcoatlus.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Tenontosaurio",
+  "nombre": "TENONTOSAURIO",
+  "glb": "modelos/Tenontosaurio.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Tiranosaurio_Rex",
+  "nombre": "TIRANOSAURIO REX",
+  "glb": "modelos/Tiranosaurio_Rex.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Triceratops",
+  "nombre": "TRICERATOPS",
+  "glb": "modelos/Triceratops.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Troodon",
+  "nombre": "TROODON",
+  "glb": "modelos/Troodon.glb",
+  "hayModelo": true
+ },
+ {
+  "id": "Velociraptor_Omniraptor",
+  "nombre": "VELOCIRAPTOR",
+  "glb": "modelos/Velociraptor_Omniraptor.glb",
+  "hayModelo": true
+ }
+]

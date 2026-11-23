@@ -1,0 +1,39 @@
+:root{--negro:#15110E;--hueso:#F1E7D3;--ambar:#E8A030;--arena:#D8C3A0;--cond:"Oswald","Arial Narrow",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--negro);color:var(--hueso);font-family:var(--cond);overflow:hidden}
+button{font-family:var(--cond);cursor:pointer;border:0;background:none;color:var(--hueso)}
+[hidden]{display:none!important}
+
+/* la mancha roja de pincel seco de los menús del juego */
+.mancha{background:url(media/mancha.webp) center/100% 100% no-repeat;color:var(--hueso);text-transform:uppercase;
+  letter-spacing:.2em;font-weight:700;padding:.55em 1.6em;text-shadow:0 2px 0 #0008}
+
+.capa{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:24px;background:radial-gradient(ellipse at center,#2a1d14 0%,var(--negro) 70%)}
+.logo{width:min(62vw,300px);height:auto;margin-bottom:18px}
+.sobre{margin:0;letter-spacing:.35em;text-transform:uppercase;color:var(--ambar);font-size:14px}
+h1{font-weight:700;text-transform:uppercase;font-size:clamp(26px,8vw,44px);line-height:1.05;margin:.35em 0 1em;letter-spacing:.03em}
+#empezar{font-size:22px}
+.nota{color:var(--arena);opacity:.75;font-size:14px;letter-spacing:.05em;margin-top:22px}
+.nota.error{color:#ff8a7a;opacity:1}
+
+/* sobre la cámara */
+#hud{position:fixed;inset:0;z-index:10;pointer-events:none;display:flex;flex-direction:column;justify-content:flex-end;
+  align-items:center;padding:0 16px calc(28px + env(safe-area-inset-bottom))}
+#pista{margin:0;font-size:16px;letter-spacing:.12em;text-transform:uppercase;text-shadow:0 2px 8px #000,0 0 2px #000}
+#encontrado{display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:auto}
+#nombre{margin:0;font-size:clamp(22px,7vw,34px)}
+#mesa{font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--ambar);text-shadow:0 2px 8px #000;padding:8px 12px}
+
+/* visor 3D para ponerlo en la mesa */
+#visor{position:fixed;inset:0;z-index:30;background:radial-gradient(ellipse at center,#2a1d14 0%,var(--negro) 75%);
+  display:flex;flex-direction:column;align-items:center}
+#mv{width:100%;flex:1;--poster-color:transparent;background:transparent}
+#mv-ar{position:absolute;left:50%;bottom:24px;translate:-50% 0;font-size:18px}
+#mv-nombre{margin:14px 0 4px;font-size:26px;letter-spacing:.2em;text-transform:uppercase}
+#cerrar{margin:6px 0 calc(18px + env(safe-area-inset-bottom));font-size:14px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--arena);padding:8px 12px}
+
+/* el video de MindAR va debajo de todo */
+body > video{z-index:0!important}
+a-scene{z-index:1}
